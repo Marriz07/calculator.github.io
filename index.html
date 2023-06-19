@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+   body {
+	background: url(85585d27229af16.jpg) no-repeat fixed;
+	background-size: 100% 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+  .calculator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 320px;
+  padding: 4px;
+  background-color: #bcbcbc;
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+}
+.calculator__mem-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.calculator__buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background-color: #bcbcbc;
+}
+.calculator__btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 100;
+  padding: 20px 0;
+  background-color: #d9d9d9;
+  color: #111111;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+    .display {
+      background-color: #FFF4F4;
+      border: 1px solid #F7E6C4;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-align: right;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .button {
+      background-color: #F9F5F6;
+      border: none;
+      border-radius: 5px;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .button.operator {
+      background-color: #19A7CE;
+      color: #fff;
+    }
+
+    .button.clear {
+      background-color: #146C94;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <p id="result">0</p>
+    </div>
+       <div class="calculator__buttons">
+	 <button class="calculator__btn" data-operator="percent"></button>
+	 <button class="calculator__btn" data-option="clearEntry"></button>
+      <button class="calculator__btn" data-option="clear"></button>
+      <button class="calculator__btn calculator__btn--backspace" data-option="undo"></button>
+      
+      <button class="button" data-operator="fraction">&sup1;/ ₓ</button>
+  <button class="button clear" onclick="clearDisplay()">CE</button>
+  <button class="button clear" onclick="clearDisplay()">C</button>
+     <button class="button operator" onclick="appendToDisplay('/')">/</button>
+      <button class="button"  onclick="appendToDisplay('7')">7</button>                                        
+     <button class="button" onclick="appendToDisplay('8')">8</button>                                     
+      <button class="button" onclick="appendToDisplay('9')">9</button>                                
+        <button class="button operator" onclick="appendToDisplay('*')">x</button>
+    
+  <button class="button" onclick="appendToDisplay('4')">4</button>
+      <button class="button" onclick="appendToDisplay('5')">5</button>
+      <button class="button" onclick="appendToDisplay('6')">6</button>
+        <button class="button operator" onclick="appendToDisplay('-')">-</button>
+      <button class="button" onclick="appendToDisplay('1')">1</button>
+      <button class="button" onclick="appendToDisplay('2')">2</button>
+      <button class="button" onclick="appendToDisplay('3')">3</button>
+        <button class="button operator" onclick="appendToDisplay('+')">+</button>
+     <button class="button" onclick="appendToDisplay('0')">0</button>
+      <button class="button" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <script>
+  
+    let displayValue = ""; 
+    function appendToDisplay(value) {
+      displayValue += value; 
+      document.getElementById("result").textContent = displayValue; 
+    }
+    function clearDisplay() {
+      displayValue = ""; 
+      document.getElementById("result").textContent = "0";
+    }
+    function calculateResult() {
+      const result = eval(displayValue);
+      displayValue = result.toString();
+      document.getElementById("result").textContent = displayValue; 
+    }
+  </script>
+</body>
+</html>
